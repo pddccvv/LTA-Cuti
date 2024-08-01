@@ -19,7 +19,7 @@
 
     @include('partials.navbar')
 
-    <div class="container mt-4">
+    <div class="container-fluid">
         @yield('content')
     </div>
 

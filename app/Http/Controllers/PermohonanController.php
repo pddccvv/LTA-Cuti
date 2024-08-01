@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Permohonan;
@@ -10,12 +9,12 @@ class PermohonanController extends Controller
     public function index()
     {
         $permohonans = Permohonan::all();
-        return view('admin.verifikasi', compact('permohonans'));
+        return view('pages.admin.verifikasi', compact('permohonans'));
     }
 
     public function create()
     {
-        return view('pegawai.permohonanCuti');
+        return view('pages.pegawai.permohonanCuti');
     }
 
     public function store(Request $request)
@@ -30,7 +29,25 @@ class PermohonanController extends Controller
 
         Permohonan::create($request->all());
 
-        return redirect()->route('index')
+        return redirect()->route('pages.pegawai.cekStatus')
             ->with('success', 'Permohonan created successfully.');
+    }
+public function updateStatus($id)
+{
+    $permohonan = Permohonan::findOrFail($id);
+    // Misalkan kita ingin mengganti status menjadi 'disetujui' sebagai contoh
+    $permohonan->status = 'disetujui';
+    $permohonan->save();
+
+    return redirect()->route('permohonan.index')
+        ->with('success', 'Status permohonan diperbarui.');
+}
+
+
+
+    public function cekStatus()
+    {
+        $permohonans = Permohonan::all();
+        return view('pages.pegawai.cekStatus', compact('permohonans'));
     }
 }

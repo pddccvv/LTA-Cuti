@@ -13,11 +13,9 @@
 </script>
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container">
         <h3>Verifikasi Permohonan</h3>
         <div class="row">
-            <div class="col-md-12">
-                <h2>List Permohonan</h2>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -26,16 +24,27 @@
                             <th>Jabatan</th>
                             <th>Lama Cuti</th>
                             <th>Alasan</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($permohonans as $permohonan)
+                        @foreach ($permohonans as $data)
                             <tr>
-                                <td>{{ $permohonan->nama }}</td>
-                                <td>{{ $permohonan->nip }}</td>
-                                <td>{{ $permohonan->jabatan }}</td>
-                                <td>{{ $permohonan->lama_cuti }}</td>
-                                <td>{{ $permohonan->alasan }}</td>
+                                <td>{{ $data->nama }}</td>
+                                <td>{{ $data->nip }}</td>
+                                <td>{{ $data->jabatan }}</td>
+                                <td>{{ $data->lama_cuti }}</td>
+                                <td>{{ $data->alasan }}</td>
+                                <td>{{ $data->status }}</td>
+                                <td>
+                                    <!-- Form untuk update status -->
+                                    <form action="{{ route('permohonan.updateStatus', $data->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="btn btn-primary">Setujui</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -43,5 +52,4 @@
             </div>
         </div>
     </div>
-
 @endsection

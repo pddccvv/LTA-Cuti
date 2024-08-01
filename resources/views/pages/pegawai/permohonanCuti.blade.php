@@ -1,4 +1,4 @@
-@extends('layouts.masterSidebar')
+@extends('layouts.master')
 
 @section('title', 'Cek Status')
 <!-- Menggunakan Bootstrap CDN -->
@@ -12,9 +12,9 @@
 </script>
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col">
                 <h2>Tambah Permohonan</h2>
                 <form action="{{ route('permohonan.store') }}" method="POST">
                     @csrf
