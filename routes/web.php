@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PermohonanController;
+
 
 
 Route::get('/', function () {
@@ -19,10 +21,5 @@ Route::get('/admin/data', function () {
     return view('pages.admin.dataPegawai');
 })->name("pegawai");
 
-Route::get('/pegawai/cekstatus', function () {
-    return view('pages.admin.cekStatus');
-})->name("status");
 
-Route::get('/pegawai/permohonan', function () {
-    return view('pages.pegawai.permohonanCuti');
-})->name("permohonan");
+Route::resource('permohonan', PermohonanController::class);
